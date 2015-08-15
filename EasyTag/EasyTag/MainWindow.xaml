@@ -1,0 +1,45 @@
+﻿<Window x:Class="EasyTag.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EasyTag"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock x:Name="FileBlock" Margin="20" VerticalAlignment="Center" FontSize="16" Text="Choose your MP3 file to add album art"/>
+            <Button x:Name="FileButton" Click="FileButton_OnClick" Content="Choose File" FontSize="16" Margin="20" MinWidth="150"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <TextBlock Margin="20" VerticalAlignment="Center" FontSize="16" Text="Song Title"/>
+            <TextBox x:Name="NameBox" VerticalAlignment="Center" Width="240" FontSize="20" Text=""/>
+            <Button x:Name="NameButton" Click="Search_Click" HorizontalAlignment="Right" Content="Search" FontSize="16" Margin="20" MinWidth="75"/>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="AlbumArt" Height="50" Source="{Binding AlbumArt}" Grid.Column="0"/>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="5">
+                                <TextBlock Text="{Binding Path=track_title}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Path=album_title}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Path=artist_combined}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Window>
